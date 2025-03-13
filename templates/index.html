@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildlife Conservation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Wildlife Conservation Logo" class="logo">
+            <h1>Wildlife Conservation System</h1>
+        </header>
+
+        <main>
+            <h2>Select a Camera Feed</h2>
+            <div class="camera-list">
+                <button onclick="selectCamera('Nkorho Bush Lodge')">Nkorho Bush Lodge</button>
+                <button onclick="selectCamera('Rosie Pan')">Rosie Pan</button> <!-- Corrected Name -->
+                <button onclick="selectCamera('African Watering Hole')">African Watering Hole</button>
+                <button onclick="selectCamera('Lisbon Falls')">Lisbon Falls</button>
+                <button onclick="selectCamera('HESC Cheetah Cam')">HESC Cheetah Cam</button>
+                <button onclick="selectCamera('Africam Show')">Africam Show</button>
+                <button onclick="selectCamera('Gorilla Forest Corridor')">Gorilla Forest Corridor</button>
+            </div>
+
+            <!-- Video Feed Display Area -->
+            <div id="camera-feed-container"> <!-- Corrected ID -->
+                <p>Selected feed will appear here...</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function selectCamera(cameraName) {
+            const cameraFeeds = {
+                "Nkorho Bush Lodge": "https://www.youtube.com/embed/dIChLG4_WNs",
+                "Rosie Pan": "https://www.youtube.com/embed/ItdXaWUVF48",  <!-- Corrected URL Format -->
+                "African Watering Hole": "https://www.youtube.com/embed/KyQAB-TKOVA",
+                "Lisbon Falls": "https://www.youtube.com/embed/9viZIxuonrI",
+                "HESC Cheetah Cam": "https://www.youtube.com/embed/luQSQuCHtcI",
+                "Africam Show": "https://www.youtube.com/embed/a0BME_RcftQ",
+                "Gorilla Forest Corridor": "https://www.youtube.com/embed/yfSyjwY6zSQ"
+            };
+
+            const selectedURL = cameraFeeds[cameraName];
+            if (selectedURL) {
+                localStorage.setItem('selectedCameraURL', selectedURL);
+                localStorage.setItem('selectedCameraName', cameraName);
+
+                // Redirect to Flask route for YouTube or video feeds
+                if (selectedURL.includes("youtube")) {
+                    window.location.href = '/camera_feed'; // Corrected Route
+                } else {
+                    window.location.href = `/video_feed/${encodeURIComponent(cameraName)}`;
+                }
+            } else {
+                alert('❌ Camera feed not available.');
+            }
+        }
+    </script>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

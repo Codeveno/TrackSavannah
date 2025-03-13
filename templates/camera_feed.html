@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Feed | Wildlife Conservation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Wildlife Conservation Logo" class="logo">
+            <h1 id="camera-title">Live Camera Feed</h1>
+        </header>
+
+        <main>
+            <div class="feed-container" id="camera-feed-container">
+                <!-- Dynamic content for video feed will be injected here -->
+            </div>
+            <a href="/" class="back-button">← Back to Camera Selection</a>
+        </main>
+    </div>
+
+    <script>
+        window.onload = function () {
+            const cameraFeedElement = document.getElementById('camera-feed-container');
+            const cameraTitleElement = document.getElementById('camera-title');
+            const selectedCameraURL = localStorage.getItem('selectedCameraURL');
+            const selectedCameraName = localStorage.getItem('selectedCameraName');
+
+            if (cameraFeedElement && selectedCameraURL) {
+                if (selectedCameraURL.includes("youtube")) {
+                    // Embed YouTube stream
+                    cameraFeedElement.innerHTML = `
+                        <iframe 
+                            src="${selectedCameraURL}" 
+                            width="100%" 
+                            height="400px" 
+                            frameborder="0" 
+                            allowfullscreen>
+                        </iframe>`;
+                } else {
+                    // Direct video feed (from Flask route)
+                    cameraFeedElement.innerHTML = `
+                        <img 
+                            src="/video_feed/${encodeURIComponent(selectedCameraName)}"
+                            alt="${selectedCameraName}" 
+                            width="100%" 
+                            height="400px">`;
+                }
+
+                cameraTitleElement.textContent = selectedCameraName;
+            } else {
+                cameraTitleElement.textContent = '❌ Camera Feed Not Available';
+            }
+        };
+    </script>
+</body>
+</html>
