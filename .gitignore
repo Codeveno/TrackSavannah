@@ -1,5 +1,4 @@
 # Ignore virtual environment
-venv/
 
 # Ignore YOLOv5 directory
 
