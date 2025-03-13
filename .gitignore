@@ -2,7 +2,7 @@
 venv/
 
 # Ignore YOLOv5 directory
-yolov5/
+
 
 # Ignore common Python artifacts
 __pycache__/
