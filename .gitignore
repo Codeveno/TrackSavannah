@@ -1,14 +1,1 @@
-# Ignore virtual environment
 
-# Ignore YOLOv5 directory
-
-
-# Ignore common Python artifacts
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.db
-*.sqlite3
-.DS_Store
-.env
