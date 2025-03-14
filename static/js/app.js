@@ -47,6 +47,12 @@ window.onload = function () {
     }
 }
 
+
+
+function scrollToSection(sectionId) {
+    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+}
+
 function getCameraURL(cameraName) {
     const cameraFeeds = {
         "Nkorho Bush Lodge": "https://www.youtube.com/embed/dIChLG4_WNs",

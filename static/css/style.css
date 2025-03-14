@@ -2,8 +2,8 @@ body {
     font-family: 'Roboto', Arial, sans-serif; 
     background-color: #484444f6;
     color: #f0f0f0;
-    display: flex;
     height: 100vh;
+    display: flex; /* Added display flex for centering */
     justify-content: center;
     align-items: center;
     margin: 200px 20px 0 20px; /* Smaller margin on left and right */
@@ -14,14 +14,11 @@ body {
     text-align: center;
     font-size: 2.5rem;
     font-weight: bold;
-   
-   
     padding: 15px 0;
     margin-bottom: 15px; /* Space before the main container */
     border-radius: 8px; /* Optional rounded corners */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
 }
-
 
 .container {
     display: flex;
@@ -29,16 +26,12 @@ body {
     background-color: whitesmoke;
     width: 98%;
     height: auto; /* Change to auto for scrolling support */
-    top: 1cm;
-    left: 0.6cm;
-    right: 0.6cm;
     border-radius: 0;
     box-shadow: none;
     overflow: auto; /* Enable scrolling */
     padding: 10px;
     position: relative; /* Fix scrolling issue */
 }
-
 
 header {
     display: flex;
@@ -87,12 +80,11 @@ h1, h2 {
 }
 
 #camera-feed-title {
-    color: #040404; /* White text */
+    color: #040404; /* Dark text */
     text-align: center; /* Center alignment */
     font-size: 1.8rem; /* Adjusted font size */
     margin-top: 20px; /* Added spacing */
 }
-
 
 .camera-list {
     display: grid;
@@ -142,8 +134,8 @@ button:hover {
 }
 
 #camera-feed {
-    width: 60%;
-    height: 60%;
+    width: 100%; /* Adjusted to fit container */
+    height: 100%; /* Adjusted to fit container */
     object-fit: cover;
 }
 
@@ -165,4 +157,11 @@ button:hover {
 
 html {
     scroll-behavior: smooth;
+}
+
+/* Add your existing CSS here */
+
+/* Ensure main element has enough height */
+main {
+    min-height: 60vh;
 }
