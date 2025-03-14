@@ -1,4 +1,3 @@
-// Handle camera selection and navigation
 function selectCamera(cameraName) {
     const cameraURL = getCameraURL(cameraName);
 
@@ -8,7 +7,7 @@ function selectCamera(cameraName) {
 
         // Redirect to correct feed handling page
         if (cameraURL.includes("youtube")) {
-            window.location.href = '/camera_feed'; // Corrected URL
+            window.location.href = '/camera_feed';
         } else {
             window.location.href = `/video_feed/${encodeURIComponent(cameraName)}`;
         }
@@ -17,18 +16,16 @@ function selectCamera(cameraName) {
     }
 }
 
-// Display the selected camera feed
 window.onload = function () {
-    const cameraFeedElement = document.getElementById('camera-feed-container'); // Corrected ID
+    const cameraFeedElement = document.getElementById('camera-feed-container');
     const cameraTitleElement = document.getElementById('camera-title');
     const selectedCameraURL = localStorage.getItem('selectedCameraURL');
     const selectedCameraName = localStorage.getItem('selectedCameraName');
 
     if (cameraFeedElement && selectedCameraURL) {
         if (selectedCameraURL.includes("youtube")) {
-            // Embed YouTube stream
-            cameraFeedElement.innerHTML = `
-                <iframe 
+            cameraFeedElement.innerHTML = 
+                `<iframe 
                     src="${selectedCameraURL}" 
                     width="100%" 
                     height="500px" 
@@ -36,9 +33,8 @@ window.onload = function () {
                     allowfullscreen>
                 </iframe>`;
         } else {
-            // Direct video feed (handled by Flask route)
-            cameraFeedElement.innerHTML = `
-                <img src="${selectedCameraURL}" alt="${selectedCameraName}" width="100%" height="500px">`;
+            cameraFeedElement.innerHTML = 
+                `<img src="${selectedCameraURL}" alt="${selectedCameraName}" width="100%" height="500px">`;
         }
 
         cameraTitleElement.textContent = selectedCameraName;
@@ -47,7 +43,6 @@ window.onload = function () {
     }
 }
 
-// Dictionary of actual camera links
 function getCameraURL(cameraName) {
     const cameraFeeds = {
         "Nkorho Bush Lodge": "https://www.youtube.com/embed/dIChLG4_WNs",
