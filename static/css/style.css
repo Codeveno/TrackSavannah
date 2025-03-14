@@ -6,9 +6,10 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    margin: 150px 0 0 0; /* Increased top margin for better spacing */
-    padding: 30px 20px 20px 20px; /* Increased top padding slightly */
+    margin: 200px 0 0 0; /* Increased top margin for better spacing */
+    padding: 50px 20px 20px 20px; /* Increased top padding for improved positioning */
 }
+
 
 
 .container {
@@ -68,11 +69,29 @@ h1, h2 {
 }
 
 .camera-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Increased gap */
-    margin-top: 25px; /* Increased margin */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between boxes */
+    margin-top: 25px;
 }
+
+.camera-list button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 20px; /* More padding for better spacing */
+    border-radius: 10px; /* Softer corners */
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Improved box shadow for depth */
+    transition: background 0.3s ease, transform 0.3s ease; 
+}
+
+.camera-list button:hover {
+    background-color: #45a049;
+    transform: translateY(-3px); /* Slight lift effect */
+}
+
 
 button {
     background-color: #4CAF50;
