@@ -5,6 +5,9 @@ function selectCamera(cameraName) {
         localStorage.setItem('selectedCameraURL', cameraURL);
         localStorage.setItem('selectedCameraName', cameraName);
 
+        // Log the selected camera name
+        console.log(`Now Viewing: ${cameraName}`);
+
         // Redirect to correct feed handling page
         if (cameraURL.includes("youtube")) {
             window.location.href = '/camera_feed';
@@ -56,4 +59,3 @@ function getCameraURL(cameraName) {
     };
     return cameraFeeds[cameraName] || null;
 }
-

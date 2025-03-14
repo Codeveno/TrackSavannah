@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <!-- System Name Banner -->
     <div class="system-name-banner">
         TrackSavannah
     </div>
@@ -30,6 +31,8 @@
         <!-- Main Section -->
         <main>
             <h2>Select a Camera Feed</h2>
+
+            <!-- Camera List Section -->
             <div class="camera-list">
                 <button onclick="selectCamera('Nkorho Bush Lodge')">Nkorho Bush Lodge</button>
                 <button onclick="selectCamera('Rosie Pan')">Rosie Pan</button>
@@ -40,31 +43,32 @@
                 <button onclick="selectCamera('Gorilla Forest Corridor')">Gorilla Forest Corridor</button>
             </div>
 
+            <!-- Camera Feed Display -->
             <div id="camera-feed-container">
                 <p id="camera-feed-title">Selected feed will appear here...</p>
+                <div id="camera-frame"></div>
             </div>
 
-           <!-- About Section -->
-<section id="about">
-    <h2>About TrackSavannah</h2>
-    <p>
-        TrackSavannah is an AI-driven wildlife conservation system designed to monitor and track wildlife in their natural habitat. 
-        Our platform uses real-time camera feeds to provide crucial insights for conservation efforts. By observing animal behavior 
-        and movement patterns, we aim to support ecological research, protect endangered species, and promote biodiversity.
-    </p>
-</section>
+            <!-- About Section -->
+            <section id="about">
+                <h2>About TrackSavannah</h2>
+                <p>
+                    TrackSavannah is an AI-driven wildlife conservation system designed to monitor and track wildlife in their natural habitat. 
+                    Our platform uses real-time camera feeds to provide crucial insights for conservation efforts. By observing animal behavior 
+                    and movement patterns, we aim to support ecological research, protect endangered species, and promote biodiversity.
+                </p>
+            </section>
 
-<!-- Contact Section -->
-<section id="contact">
-    <h2>Contact Us</h2>
-    <p>If you have any inquiries, feel free to reach out to us:</p>
-    <ul>
-        <li><strong>Email:</strong> support@tracksavannah.org</li>
-        <li><strong>Phone:</strong> +254 712 345 678</li>
-        <li><strong>Address:</strong> Wildlife Conservation HQ, Nairobi, Kenya</li>
-    </ul>
-</section>
-
+            <!-- Contact Section -->
+            <section id="contact">
+                <h2>Contact Us</h2>
+                <p>If you have any inquiries, feel free to reach out to us:</p>
+                <ul>
+                    <li><strong>Email:</strong> support@tracksavannah.org</li>
+                    <li><strong>Phone:</strong> +254 712 345 678</li>
+                    <li><strong>Address:</strong> Wildlife Conservation HQ, Nairobi, Kenya</li>
+                </ul>
+            </section>
         </main>
 
         <!-- Footer Section -->
@@ -74,6 +78,7 @@
         </footer>
     </div>
 
+    <!-- JavaScript -->
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>

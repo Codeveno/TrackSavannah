@@ -13,10 +13,9 @@ CAMERA_SOURCES = {
     "Rosie Pan": "https://www.youtube.com/embed/ItdXaWUVF48",
     "African Watering Hole": "https://www.youtube.com/embed/KyQAB-TKOVA",
     "Lisbon Falls": "https://www.youtube.com/embed/9viZIxuonrI",
-    "OL DONYO": "https://www.youtube.com/embed/XsOU8JnEpNM",  
+    "OL DONYO": "https://www.youtube.com/embed/XsOU8JnEpNM",
     "Gorilla Forest Corridor": "https://www.youtube.com/embed/yfSyjwY6zSQ"
 }
-
 
 # Stream generator function for live video feeds
 def generate_frames(source):
@@ -32,7 +31,7 @@ def generate_frames(source):
             print(f"❌ Lost connection to {source}")
             break
 
-        # Resize frame for performance improvement
+        # Resize frame for improved performance
         frame = cv2.resize(frame, (640, 480))
 
         # Detect animals using YOLOv5
@@ -44,6 +43,7 @@ def generate_frames(source):
         # Visualize results with bounding boxes and labels
         frame = draw_tracks(frame, tracks)
 
+        # Encode the frame to JPEG for streaming
         _, buffer = cv2.imencode('.jpg', frame)
         frame_bytes = buffer.tobytes()
 
@@ -62,6 +62,7 @@ def index():
 @app.route('/video_feed/<camera_name>')
 def video_feed(camera_name):
     source = CAMERA_SOURCES.get(camera_name)
+    
     if not source:
         return "❌ Camera feed not available", 404
 
@@ -70,8 +71,7 @@ def video_feed(camera_name):
         return render_template('camera_feed.html', camera_name=camera_name, camera_url=source)
 
     # For direct camera links (non-YouTube)
-    return Response(generate_frames(source),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(generate_frames(source), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 # Route for YouTube feeds
 @app.route('/camera_feed')
@@ -85,4 +85,3 @@ if __name__ == "__main__":
     import os
     port = int(os.environ.get("PORT", 8080))  # Default to 8080 for smoother Render deployment
     app.run(host="0.0.0.0", port=port)
-
