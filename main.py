@@ -13,10 +13,10 @@ CAMERA_SOURCES = {
     "Rosie Pan": "https://www.youtube.com/embed/ItdXaWUVF48",
     "African Watering Hole": "https://www.youtube.com/embed/KyQAB-TKOVA",
     "Lisbon Falls": "https://www.youtube.com/embed/9viZIxuonrI",
-    "HESC Cheetah Cam": "https://www.youtube.com/embed/luQSQuCHtcI",
-    "Africam Show": "https://www.youtube.com/embed/a0BME_RcftQ",
+    "OL DONYO": "https://www.youtube.com/embed/XsOU8JnEpNM",  
     "Gorilla Forest Corridor": "https://www.youtube.com/embed/yfSyjwY6zSQ"
 }
+
 
 # Stream generator function for live video feeds
 def generate_frames(source):

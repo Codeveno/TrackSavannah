@@ -7,35 +7,71 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <div class="system-name-banner">
+        TrackSavannah
+    </div>
+
     <div class="container">
+        <!-- Header Section -->
         <header>
             <div class="left-section">
-                <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Wildlife Conservation Logo" class="logo">
+                <img src="{{ url_for('static', filename='images/logo.jpeg') }}" 
+                     alt="Wildlife Conservation Logo" 
+                     class="logo">
                 <span class="system-name">TrackSavannah</span>
             </div>
             <nav class="nav-bar">
                 <a href="/">Home</a>
-                <a href="/about">About</a>
-                <a href="/contact">Contact</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
             </nav>
         </header>
 
+        <!-- Main Section -->
         <main>
-            <h2 id="camera-feed-title">Select a Camera Feed</h2>
+            <h2>Select a Camera Feed</h2>
             <div class="camera-list">
                 <button onclick="selectCamera('Nkorho Bush Lodge')">Nkorho Bush Lodge</button>
                 <button onclick="selectCamera('Rosie Pan')">Rosie Pan</button>
                 <button onclick="selectCamera('African Watering Hole')">African Watering Hole</button>
                 <button onclick="selectCamera('Lisbon Falls')">Lisbon Falls</button>
-                <button onclick="selectCamera('HESC Cheetah Cam')">HESC Cheetah Cam</button>
+                <button onclick="selectCamera('OL DONYO')">OL DONYO</button>
                 <button onclick="selectCamera('Africam Show')">Africam Show</button>
                 <button onclick="selectCamera('Gorilla Forest Corridor')">Gorilla Forest Corridor</button>
             </div>
 
             <div id="camera-feed-container">
-                <p>Selected feed will appear here...</p>
+                <p id="camera-feed-title">Selected feed will appear here...</p>
             </div>
+
+           <!-- About Section -->
+<section id="about">
+    <h2>About TrackSavannah</h2>
+    <p>
+        TrackSavannah is an AI-driven wildlife conservation system designed to monitor and track wildlife in their natural habitat. 
+        Our platform uses real-time camera feeds to provide crucial insights for conservation efforts. By observing animal behavior 
+        and movement patterns, we aim to support ecological research, protect endangered species, and promote biodiversity.
+    </p>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any inquiries, feel free to reach out to us:</p>
+    <ul>
+        <li><strong>Email:</strong> support@tracksavannah.org</li>
+        <li><strong>Phone:</strong> +254 712 345 678</li>
+        <li><strong>Address:</strong> Wildlife Conservation HQ, Nairobi, Kenya</li>
+    </ul>
+</section>
+
         </main>
+
+        <!-- Footer Section -->
+        <footer>
+            <p>&copy; 2025 TrackSavannah. All Rights Reserved.</p>
+            <p>Empowering Conservation Through Technology.</p>
+        </footer>
     </div>
 
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>

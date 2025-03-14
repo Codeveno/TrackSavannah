@@ -10,27 +10,41 @@ body {
     padding: 50px 10px 10px 10px; 
 }
 
+.system-name-banner {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+   
+   
+    padding: 15px 0;
+    margin-bottom: 15px; /* Space before the main container */
+    border-radius: 8px; /* Optional rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+
+
 .container {
     display: flex;
     flex-direction: column;
     background-color: whitesmoke;
     width: 98%;
-    height: 96%;
-    position: fixed;
-    top:1cm;
+    height: auto; /* Change to auto for scrolling support */
+    top: 1cm;
     left: 0.6cm;
     right: 0.6cm;
     border-radius: 0;
     box-shadow: none;
-    overflow: hidden;
+    overflow: auto; /* Enable scrolling */
     padding: 10px;
+    position: relative; /* Fix scrolling issue */
 }
+
 
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #8ce88f;
+    background-color: white;
     padding: 15px 25px;
     color: #0e0d0d;
     border-radius: 12px 12px 0 0; /* Rounded top corners */
@@ -73,7 +87,7 @@ h1, h2 {
 }
 
 #camera-feed-title {
-    color: #ffffff; /* White text */
+    color: #040404; /* White text */
     text-align: center; /* Center alignment */
     font-size: 1.8rem; /* Adjusted font size */
     margin-top: 20px; /* Added spacing */
@@ -147,4 +161,8 @@ button:hover {
 .back-button:hover {
     background-color: #388e3c;
     transform: scale(1.05); /* Hover effect */
+}
+
+html {
+    scroll-behavior: smooth;
 }

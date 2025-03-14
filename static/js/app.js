@@ -27,8 +27,9 @@ window.onload = function () {
             cameraFeedElement.innerHTML = 
                 `<iframe 
                     src="${selectedCameraURL}" 
-                    width="100%" 
-                    height="500px" 
+                    width="90%" 
+                    top="40px"
+                    height="590px" 
                     frameborder="0" 
                     allowfullscreen>
                 </iframe>`;
@@ -49,9 +50,10 @@ function getCameraURL(cameraName) {
         "Rosie Pan": "https://www.youtube.com/embed/ItdXaWUVF48",
         "African Watering Hole": "https://www.youtube.com/embed/KyQAB-TKOVA",
         "Lisbon Falls": "https://www.youtube.com/embed/9viZIxuonrI",
-        "HESC Cheetah Cam": "https://www.youtube.com/embed/luQSQuCHtcI",
+        "OL DONYO": "https://www.youtube.com/embed/XsOU8JnEpNM",  
         "Africam Show": "https://www.youtube.com/embed/a0BME_RcftQ",
         "Gorilla Forest Corridor": "https://www.youtube.com/embed/yfSyjwY6zSQ"
     };
     return cameraFeeds[cameraName] || null;
 }
+
