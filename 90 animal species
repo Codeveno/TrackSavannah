@@ -1,0 +1,149 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "gpuType": "T4",
+      "authorship_tag": "ABX9TyPTkQS1FJagGQ7JdiOowwo1",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    },
+    "accelerator": "GPU"
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Codeveno/TrackSavannah/blob/main/90%20animal%20species\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# specify system resources to be used."
+      ],
+      "metadata": {
+        "id": "V9-Ihh9tUZGc"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "system setting\n",
+        "!nvidia-smi"
+      ],
+      "metadata": {
+        "id": "gQioogQkP6xJ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# Set Up the Environment"
+      ],
+      "metadata": {
+        "id": "ifBzWx_MUm5d"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "sHbD4mSwPmQ7"
+      },
+      "outputs": [],
+      "source": [
+        "\n",
+        "# We will use the ultralytics package, which includes YOLOv8.\n",
+        "\n",
+        "!pip install ultralytics"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "#Download the YOLOv8 Model"
+      ],
+      "metadata": {
+        "id": "wdMixVm9Utgs"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#Download the YOLOv8 Model\n",
+        "import requests\n",
+        "\n",
+        "model_url = \"https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11n.pt\"\n",
+        "model_path = \"yolo11n.pt\"\n",
+        "\n",
+        "response = requests.get(model_url)\n",
+        "with open(model_path, \"wb\") as f:\n",
+        "    f.write(response.content)\n"
+      ],
+      "metadata": {
+        "id": "EC3myOZ9P0m3"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# create a YAML file named animals.yaml\n",
+        "train: C:/Users/mophi/Downloads/animals/animals\n",
+        "val: C:/Users/mophi/Downloads/animals/animals\n",
+        "\n",
+        "nc: 90  # Number of classes\n",
+        "names: [\n",
+        "    'antelope', 'badger', 'bat', 'bear', 'bee', 'beetle', 'bison', 'boar', 'butterfly', 'cat',\n",
+        "    'caterpillar', 'chimpanzee', 'cockroach', 'cow', 'coyote', 'crab', 'crow', 'deer', 'dog', 'dolphin',\n",
+        "    'donkey', 'dragonfly', 'duck', 'eagle', 'elephant', 'flamingo', 'fly', 'fox', 'goat', 'goldfish',\n",
+        "    'goose', 'gorilla', 'grasshopper', 'hamster', 'hare', 'hedgehog', 'hippopotamus', 'hornbill', 'horse',\n",
+        "    'hummingbird', 'hyena', 'jellyfish', 'kangaroo', 'koala', 'ladybugs', 'leopard', 'lion', 'lizard',\n",
+        "    'lobster', 'mosquito', 'moth', 'mouse', 'octopus', 'okapi', 'orangutan', 'otter', 'owl', 'ox',\n",
+        "    'oyster', 'panda', 'parrot', 'pelecaniformes', 'penguin', 'pig', 'pigeon', 'porcupine', 'possum',\n",
+        "    'raccoon', 'rat', 'reindeer', 'rhinoceros', 'sandpiper', 'seahorse', 'seal', 'shark', 'sheep',\n",
+        "    'snake', 'sparrow', 'squid', 'squirrel', 'starfish', 'swan', 'tiger', 'turkey', 'turtle', 'whale',\n",
+        "    'wolf', 'wombat', 'woodpecker', 'zebra'\n",
+        "]"
+      ],
+      "metadata": {
+        "id": "9DNwJb5MQzRR"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#Train the Model\n",
+        "from ultralytics import YOLO\n",
+        "\n",
+        "# Load the model\n",
+        "model = YOLO(\"yolo11n.pt\")\n",
+        "\n",
+        "# Train the model\n",
+        "results = model.train(data=\"animals.yaml\", epochs=100, imgsz=640)"
+      ],
+      "metadata": {
+        "id": "vxDGJFPoRVSY"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
