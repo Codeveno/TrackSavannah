@@ -359,27 +359,27 @@ main {
 
 /* Footer Section */
 footer {
-    background-color: #232c2a; /* Dark grey background */
+    background-color: #232c2a;
     color: white;
-    padding: 5px 10px; /* Smaller padding for a more compact footer */
+    padding: 5px 10px;
     text-align: center;
-    border-radius: 0 0 8px 8px; /* Rounded bottom corners */
-    margin-top: 10px; /* Reduced margin-top */
-    font-size: 0.8rem; /* Slightly smaller font size */
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 0 0 8px 8px;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
 footer p {
-    margin: 5px 0; /* Smaller margin */
+    margin: 5px 0;
     line-height: 1.4;
 }
 
 footer p:first-child {
     font-weight: bold;
-    font-size: 1rem; /* Slightly larger for emphasis */
+    font-size: 1rem;
 }
 
 footer p:last-child {
     font-style: italic;
-    color: white; /* Lighter grey for contrast */
+    color: white;
 }
