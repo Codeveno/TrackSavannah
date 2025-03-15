@@ -5,17 +5,15 @@ function selectCamera(cameraName) {
         localStorage.setItem('selectedCameraURL', cameraURL);
         localStorage.setItem('selectedCameraName', cameraName);
 
-        // Log the selected camera name
         console.log(`Now Viewing: ${cameraName}`);
 
-        // Redirect to correct feed handling page
         if (cameraURL.includes("youtube")) {
             window.location.href = '/camera_feed';
         } else {
             window.location.href = `/video_feed/${encodeURIComponent(cameraName)}`;
         }
     } else {
-        alert('❌ Camera feed not available.');
+        alert(`❌ Camera feed for '${cameraName}' not available.`);
     }
 }
 
@@ -25,7 +23,7 @@ window.onload = function () {
     const selectedCameraURL = localStorage.getItem('selectedCameraURL');
     const selectedCameraName = localStorage.getItem('selectedCameraName');
 
-    if (cameraFeedElement && selectedCameraURL) {
+    if (cameraFeedElement && cameraTitleElement && selectedCameraURL) {
         if (selectedCameraURL.includes("youtube")) {
             cameraFeedElement.innerHTML = 
                 `<iframe 
@@ -42,15 +40,18 @@ window.onload = function () {
         }
 
         cameraTitleElement.textContent = selectedCameraName;
-    } else {
+    } else if (cameraTitleElement) {
         cameraTitleElement.textContent = '❌ Camera Feed Not Available';
     }
-}
-
-
+};
 
 function scrollToSection(sectionId) {
-    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        console.error(`Section with ID '${sectionId}' not found.`);
+    }
 }
 
 function getCameraURL(cameraName) {
@@ -59,9 +60,9 @@ function getCameraURL(cameraName) {
         "Rosie Pan": "https://www.youtube.com/embed/ItdXaWUVF48",
         "African Watering Hole": "https://www.youtube.com/embed/KyQAB-TKOVA",
         "Lisbon Falls": "https://www.youtube.com/embed/9viZIxuonrI",
-        "OL DONYO": "https://www.youtube.com/embed/XsOU8JnEpNM",  
+        "OL DONYO": "https://www.youtube.com/embed/XsOU8JnEpNM",
         "Africam Show": "https://www.youtube.com/embed/a0BME_RcftQ",
         "Gorilla Forest Corridor": "https://www.youtube.com/embed/yfSyjwY6zSQ"
     };
-    return cameraFeeds[cameraName] || null;
+    return cameraFeeds[cameraName] || null; 
 }

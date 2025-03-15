@@ -19,12 +19,17 @@
                 <img src="{{ url_for('static', filename='images/logo.jpeg') }}" 
                      alt="Wildlife Conservation Logo" 
                      class="logo">
-                <span class="system-name">TrackSavannah</span>
             </div>
             <nav class="nav-bar">
                 <a href="/">Home</a>
-                <a href="javascript:void(0);" onclick="scrollToSection('about')">About</a>
-                <a href="javascript:void(0);" onclick="scrollToSection('contact')">Contact</a>
+                <a href="/about">About</a>
+                <a href="javascript:void(0);" onclick="scrollToSection('contact');">Contact</a>
+                <!-- Add Logout Link -->
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Login</a>
+                {% endif %}
             </nav>
         </header>
 
@@ -45,36 +50,24 @@
 
             <!-- Camera Feed Display -->
             <div id="camera-feed-container">
-                <p id="camera-feed-title">Selected feed will appear here...</p>
+                <h3 id="camera-title">Selected feed will appear here...</h3>
                 <div id="camera-frame"></div>
             </div>
-        </main> <!-- Correctly closed main tag -->
-
-        <!-- About Section -->
-        <section id="about">
-            <h2>About TrackSavannah</h2>
-            <p>
-                TrackSavannah is an AI-driven wildlife conservation system designed to monitor and track wildlife in their natural habitat. 
-                Our platform uses real-time camera feeds to provide crucial insights for conservation efforts. By observing animal behavior 
-                and movement patterns, we aim to support ecological research, protect endangered species, and promote biodiversity.
-            </p>
-        </section>
+        </main>
 
         <!-- Contact Section -->
         <section id="contact">
             <h2>Contact Us</h2>
             <p>If you have any inquiries, feel free to reach out to us:</p>
             <ul>
-                <li><strong>Email:</strong> support@tracksavannah.org</li>
-                <li><strong>Phone:</strong> +254 712 345 678</li>
-                <li><strong>Address:</strong> Wildlife Conservation HQ, Nairobi, Kenya</li>
+                <li><strong>Email:</strong> 1realmakaveli@proton.me</li>
             </ul>
         </section>
 
         <!-- Footer Section -->
         <footer>
             <p>&copy; 2025 TrackSavannah. All Rights Reserved.</p>
-            <p>Empowering Conservation Through Technology.</p>
+            <p>Created under strict supervision of MD. Terry, Computing Dept, Kisii University.</p>
         </footer>
     </div> <!-- Correctly closed container div -->
 
