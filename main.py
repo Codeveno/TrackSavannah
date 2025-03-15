@@ -64,12 +64,14 @@ class RegistrationForm(FlaskForm):
 # Password reset form
 class ResetPasswordForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
+    new_password = PasswordField('New Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('new_password')])
     submit = SubmitField('Reset Password')
 
 # Load user for Flask-Login
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return db.session.get(User, int(user_id))  # Updated to use Session.get()
 
 # Corrected Camera Sources with embed links for YouTube
 CAMERA_SOURCES = {
@@ -132,7 +134,7 @@ def login():
         if user and user.check_password(form.password.data):
             login_user(user)
             return redirect(url_for('index'))
-        flash('Invalid username or password.')
+        flash('Invalid username or password.', 'error')
     return render_template('login.html', form=form)
 
 # Route to render `register.html`
@@ -145,12 +147,11 @@ def register():
             user.set_password(form.password.data)
             db.session.add(user)
             db.session.commit()
-            flash('Registration successful! Please log in.')
+            flash('Registration successful! Please log in.', 'success')
             return redirect(url_for('login'))
         except Exception as e:
             db.session.rollback()
-            flash(f'An error occurred: {str(e)}')
-            app.logger.error(f'Registration error: {str(e)}')
+            flash(f'An error occurred: {str(e)}', 'error')
     return render_template('register.html', form=form)
 
 # Route to render `reset_password.html`
@@ -160,10 +161,12 @@ def reset_password():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
-            # Send password reset email (implementation not shown)
-            flash('Password reset instructions sent to your email.')
+            user.set_password(form.new_password.data)
+            db.session.commit()
+            flash('Password reset successful! Please log in.', 'success')
+            return redirect(url_for('login'))
         else:
-            flash('Email not found.')
+            flash('Email not found.', 'error')
     return render_template('reset_password.html', form=form)
 
 # Route to logout

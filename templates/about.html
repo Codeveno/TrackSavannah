@@ -22,8 +22,6 @@
             </div>
             <nav class="nav-bar">
                 <a href="/">Home</a>
-                <a href="/about">About</a>
-                <a href="javascript:void(0);" onclick="scrollToSection('contact');">Contact</a>
                 <!-- Add Logout Link -->
                 {% if current_user.is_authenticated %}
                     <a href="{{ url_for('logout') }}">Logout</a>

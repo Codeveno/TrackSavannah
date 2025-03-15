@@ -9,6 +9,13 @@
 <body>
     <div class="auth-container">
         <h2>Register</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <form method="POST">
             {{ form.hidden_tag() }}
             <label for="username">Username</label>
@@ -23,5 +30,15 @@
         </form>
         <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a>.</p>
     </div>
+
+    <script>
+        // Automatically hide flash messages after 2 seconds
+        setTimeout(function() {
+            var flashMessages = document.querySelectorAll('.flash-message');
+            flashMessages.forEach(function(message) {
+                message.style.display = 'none';
+            });
+        }, 2000);
+    </script>
 </body>
 </html>
